@@ -8,15 +8,16 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
-public class ReadFromFile {
+public class CreateNewFile {
 
     //C:\Users\Zahri\Downloads\coding sample\input_files/comma.txt
 
     public static ArrayList<User> userArr = new ArrayList<>();
 
-    public ReadFromFile() {
+    public CreateNewFile() {
 
 
             // txt file with commas
@@ -56,13 +57,16 @@ public class ReadFromFile {
             while(sc.hasNext()){
 
 
-                lastName = sc.next();
-                firstName = sc.next();
-                gender = sc.next();
-                color = sc.next();
-                date = sc.next();
+                lastName = sc.next().trim();
+                firstName = sc.next().trim();
+                gender = sc.next().trim();
+                date = sc.next().trim();
+                color = sc.next().trim();
 
-                userArr.add(new User(lastName, firstName, gender, date, color));
+                System.out.println(date);
+                Date ddate = new SimpleDateFormat("MM/dd/yyyy").parse(date);
+                System.out.println(ddate);
+                userArr.add(new User(lastName, firstName, gender, date, color, ddate));
 
 //                BufferedWriter writer = new BufferedWriter(
 //                        new FileWriter("C:\\Users\\Zahri\\Downloads\\coding sample\\input_files\\buffered.txt", true)  //Set true for append mode
@@ -76,8 +80,8 @@ public class ReadFromFile {
 //                writer.write(color + "\r\n");
 //                writer.close();
 
-                System.out.println(lastName + " " + firstName + " " + " " + gender + " " + date + " " + color);
-                System.out.println(userArr.toString());
+                //System.out.println(lastName + " " + firstName + " " + " " + gender + " " + date + " " + color);
+                //System.out.println(userArr.toString());
 
                 // System.out.println(lastName + firstName + gender + date + color);
             }

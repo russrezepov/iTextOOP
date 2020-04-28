@@ -50,6 +50,15 @@ public ScanDelimitedSpace() {
             firstName = sc.next();
             pos = sc.next();
             gender = sc.next();
+            //System.out.println(gender.trim());
+
+            if (gender.trim().charAt(0)=='M'){
+                gender = "Male";
+            } else if(gender.trim().charAt(0) == 'F'){
+                gender = "Female";
+            }
+
+
             date = sc.next();
             String dateRep = date.replace("-","/");
             color = sc.next();

@@ -60,11 +60,11 @@ import java.util.Scanner;
 
             // Check if there is another line of input
             while(sc.hasNext()){
-                lastName = sc.next();
-                firstName = sc.next();
-                gender = sc.next();
-                color = sc.next();
-                date = sc.next();
+                lastName = sc.next().trim();
+                firstName = sc.next().trim();
+                gender = sc.next().trim();
+                color = sc.next().trim();
+                date = sc.next().trim();
 
                 BufferedWriter writer = new BufferedWriter(
                         new FileWriter("C:\\Users\\Zahri\\Downloads\\coding sample\\input_files\\buffered.txt", true)  //Set true for append mode

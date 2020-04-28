@@ -4,15 +4,16 @@ public class Main {
         ScanDelimitedComma sdc;
         sdc = new ScanDelimitedComma();
 
-        ScanDelimitedPipe sdp;
-        sdp = new ScanDelimitedPipe();
-
         ScanDelimitedSpace sds;
         sds = new ScanDelimitedSpace();
 
+        ScanDelimitedPipe sdp;
+        sdp = new ScanDelimitedPipe();
 
-        ReadFromFile rff;
-        rff = new ReadFromFile();
+        CreateNewFile rff;
+        rff = new CreateNewFile();
 
+        Name_Sorted_Output om1;
+        om1 = new Name_Sorted_Output();
     }
 }

@@ -1,18 +1,23 @@
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.ConcurrentModificationException;
+import java.util.Date;
 
-    public class User {
+public class User implements Comparable<User >{
 
-        private String lastName, firstName, gender, userDate, color;
+        private String lastName, firstName, gender, color, userDate;
         private String name;
+        Date realDate;
         private LocalDate dob;
 
-        public User(String lastName, String firstName, String gender, String userDate, String color) {
+        public User(String lastName, String firstName, String gender, String userDate, String color, Date realDate) {
             //super();
             this.lastName = lastName;
             this.firstName = firstName;
             this.gender = gender;
             this.userDate = userDate;
             this.color = color;
+            this.realDate = realDate;
         }
 
         public String getLastName() {
@@ -39,12 +44,16 @@ import java.time.LocalDate;
             this.gender = gender;
         }
 
-        public String getUserDate() {
+        public String getUserDate(){
             return userDate;
         }
 
-        public void setUserDate(String userDate) {
-            this.userDate = userDate;
+        public Date realDate() {
+            return realDate;
+        }
+
+        public void setUserDate(Date realDate) {
+            this.realDate = realDate;
         }
 
         public String getColor() {
@@ -73,10 +82,38 @@ import java.time.LocalDate;
 
         //Getters and Setters
 
+//        public void sort(Comparator<? super E> c)
+//        {
+//            final int expectedModCount = modCount;
+//
+//            Arrays.sort((E[]) elementData, 0, size, c);
+//
+//            if (modCount != expectedModCount) {
+//                throw new ConcurrentModificationException();
+//            }
+//            modCount++;
+//        }
 
-        @Override
-        public String toString() {
-            return "User " + lastName + " " + firstName + " " + gender + " " + userDate + " " + color + "]";
-        }
+    public void setUserDate(String userDate) {
+        this.userDate = userDate;
     }
+
+    public Date getRealDate() {
+        return realDate;
+    }
+
+    public void setRealDate(Date realDate) {
+        this.realDate = realDate;
+    }
+
+    @Override
+        public String toString() {
+            return lastName + " " + firstName + " " + gender + " " + userDate + " " + color;
+        }
+
+    @Override
+    public int compareTo(User user) {
+        return 0;
+    }
+}
 

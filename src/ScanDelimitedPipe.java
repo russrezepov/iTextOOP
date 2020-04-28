@@ -24,7 +24,7 @@ import java.util.Scanner;
                 }
 
             } catch (IOException | ParseException exp) {
-                // TODO Auto-generated catch block
+                // Auto-generated catch block
                 exp.printStackTrace();
             }
 
@@ -32,7 +32,7 @@ import java.util.Scanner;
         }
 
         private static void parseLine(String str) throws ParseException, IOException {
-            String firstName, lastName, pos, gender, color, date;
+            String firstName, lastName, pos, color, date;
             Scanner sc = new Scanner(str);
 
             sc.useDelimiter("[|]");
@@ -47,10 +47,30 @@ import java.util.Scanner;
 
             // Check if there is another line of input
             while(sc.hasNext()){
+                String gender, newGender;
                 lastName = sc.next();
                 firstName = sc.next();
                 pos = sc.next();
                 gender = sc.next();
+                //System.out.println(gender.trim());
+
+//                switch (gender.charAt(0))
+//                {
+//                    case 'M':
+//                        newGender="Male";
+//
+//                    case 'F':
+//                        newGender="Female";
+//
+//                }
+//
+                if (gender.trim().charAt(0)=='M'){
+                    gender = "Male";
+                } else if(gender.trim().charAt(0) == 'F'){
+                    gender = "Female";
+                }
+
+
                 color = sc.next();
                 date = sc.next();
                 String dateRep = date.replace("-","/");
@@ -59,11 +79,11 @@ import java.util.Scanner;
                         new FileWriter("C:\\Users\\Zahri\\Downloads\\coding sample\\input_files\\buffered.txt", true)  //Set true for append mode
                 );
                 //writer.newLine();   //Add new line
-                writer.write(lastName + " ");
-                writer.write(firstName + " ");
-                writer.write(gender + " ");
-                //writer.write(dateRep + " ");
-                writer.write(color + "\r\n");
+                writer.write(lastName.trim() + " ");
+                writer.write(firstName.trim() + " ");
+                writer.write(gender.trim() + " ");
+                writer.write(dateRep.trim() + " ");
+                writer.write(color.trim() + "\r\n");
                 writer.close();
 
                 System.out.println(lastName + firstName + gender + dateRep + color);
