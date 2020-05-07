@@ -12,40 +12,41 @@ import java.util.Date;
 import java.util.Scanner;
 
 
-    public class Name_Sorted_Output {
+public class Sorted_Output {
 
-        //C:\Users\Zahri\Downloads\coding sample\input_files/comma.txt
+        public static String BUFFERED_FILE = "\"C:\\\\Users\\\\Zahri\\\\Downloads\\\\coding sample\\\\input_files/buffered.txt\"";
+        public static String COMMA_FILE_PATH = "\"C:\\\\Users\\\\Zahri\\\\Downloads\\\\coding sample\\\\input_files/buffered.txt\"";
 
+    //ArrayList where we will retrieve DOB String and convert it to the Date format
+        // Then, we will add the Date to the same record this will allow us to sort records in files by dates
         public ArrayList<User> userArr = new ArrayList<>();
 
-        public Name_Sorted_Output() {
 
+        File commaFile = new File(BUFFERED_FILE);
+        Scanner sc = null;
 
-            // txt file with commas
-            File commaFile = new File("C:\\Users\\Zahri\\Downloads\\coding sample\\input_files/buffered.txt");
-            Scanner sc = null;
+        //Constructor
+        public Sorted_Output() {
 
-            try {
-                sc = new Scanner(commaFile);
-                // Check if there is another line of input
-                while(sc.hasNextLine()){
-                    String str = sc.nextLine();
-                    cleanFileNameSorted();
-                    parseLine(str);
-                    nameSortedoutput();
-                    cleanFileGenderSorted();
-                    genderSortedOutput();
-                    cleanFileDateSorted();
-                    dateSortedOutput();
-                }
-
-            } catch (IOException | ParseException exp) {
-                // Auto-generated catch block
-                exp.printStackTrace();
-            }
-
-            sc.close();
         }
+
+            //Main method that will sort all the files
+            public void sortTheFiles() {
+
+                try {
+                    //cleanFileNameSorted();
+                    parseLine(BUFFERED_FILE);
+                    //nameSortedOutput();
+                    //cleanFileGenderSorted();
+                    //genderSortedOutput();
+                    //cleanFileDateSorted();
+                    //dateSortedOutput();
+                    }   catch ( ParseException exp) {
+                        // Auto-generated catch block
+                        exp.printStackTrace();
+                        }
+
+            }
 
         private void cleanFileNameSorted() throws IOException {
 
@@ -77,34 +78,24 @@ import java.util.Scanner;
             writerNew.close();
         }
 
-        private void parseLine(String str) throws ParseException, IOException {
+        private void parseLine(String str) throws ParseException {
             String firstName, lastName, gender, color, date;
             Scanner sc = new Scanner(str);
 
             sc.useDelimiter("\\s+");
 
             DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            //String today = formatter.format(date);
-
-            //String datePattern = ("MM/dd/yyyy");
-            //DateFormat sdf = new SimpleDateFormat(datePattern);
-            //Date date = new Date();
 
             // Check if there is another line of input
             while(sc.hasNext()){
-
 
                 lastName = sc.next().trim();
                 firstName = sc.next().trim();
                 gender = sc.next().trim();
                 date = sc.next().trim();
                 color = sc.next().trim();
-                Date ddate = new SimpleDateFormat("MM/dd/yyyy").parse(date);
-                System.out.println(ddate);
-                userArr.add(new User(lastName, firstName, gender, date, color, ddate));
 
-
-
+                userArr.add(new User(lastName, firstName, gender, date, color, ConvertDate.convertDate(date)));
                 //System.out.println(lastName + " " + firstName + " " + " " + gender + " " + date + " " + color);
                 //System.out.println(userArr.toString());
 
@@ -113,14 +104,10 @@ import java.util.Scanner;
             sc.close();
         }
 
-        public void nameSortedoutput() throws IOException {
+        public void nameSortedOutput() throws IOException {
             String lastName, firstName, gender, date, color;
 
             userArr.sort(new NameSorter());
-            //NameSorter ns = new NameSorter();
-//            Collections.sort(userArr);
-//            User.sort(new NameSorter());
-//            System.out.println(User);
 
             for (User user : userArr) {
                 System.out.println(user);
@@ -135,7 +122,6 @@ import java.util.Scanner;
                         new FileWriter("C:\\Users\\Zahri\\Downloads\\coding sample\\input_files\\Name_Sorted_Output.txt", true)  //Set true for append mode
                 );
 
-                //writer.newLine();   //Add new line
                 writer.write(lastName.trim() + " ");
                 writer.write(firstName.trim() + " ");
                 writer.write(gender.trim() + " ");
@@ -150,10 +136,6 @@ import java.util.Scanner;
             String lastName, firstName, gender, date, color;
 
             userArr.sort(new GenderSorter().reversed());
-            //NameSorter ns = new NameSorter();
-//            Collections.sort(userArr);
-//            User.sort(new NameSorter());
-//            System.out.println(User);
 
             for (User user : userArr) {
                 System.out.println(user);
@@ -168,7 +150,6 @@ import java.util.Scanner;
                         new FileWriter("C:\\Users\\Zahri\\Downloads\\coding sample\\input_files\\Gender_Sorted_Output.txt", true)  //Set true for append mode
                 );
 
-                //writer.newLine();   //Add new line
                 writer.write(lastName.trim() + " ");
                 writer.write(firstName.trim() + " ");
                 writer.write(gender.trim() + " ");
@@ -183,10 +164,6 @@ import java.util.Scanner;
             String lastName, firstName, gender, date, color;
 
             userArr.sort(new DateSorter());
-            //NameSorter ns = new NameSorter();
-//            Collections.sort(userArr);
-//            User.sort(new NameSorter());
-//            System.out.println(User);
 
             for (User user : userArr) {
                 System.out.println(user);
@@ -201,7 +178,6 @@ import java.util.Scanner;
                         new FileWriter("C:\\Users\\Zahri\\Downloads\\coding sample\\input_files\\Date_Sorted_Output.txt", true)  //Set true for append mode
                 );
 
-                //writer.newLine();   //Add new line
                 writer.write(lastName.trim() + " ");
                 writer.write(firstName.trim() + " ");
                 writer.write(gender.trim() + " ");

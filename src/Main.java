@@ -1,19 +1,11 @@
+import java.io.IOException;
+import java.text.ParseException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ParseException {
 
-        ScanDelimitedComma sdc;
-        sdc = new ScanDelimitedComma();
+        ScanFiles sdc;
+        sdc = new ScanFiles();
 
-        ScanDelimitedSpace sds;
-        sds = new ScanDelimitedSpace();
-
-        ScanDelimitedPipe sdp;
-        sdp = new ScanDelimitedPipe();
-
-        CreateNewFile rff;
-        rff = new CreateNewFile();
-
-        Name_Sorted_Output om1;
-        om1 = new Name_Sorted_Output();
     }
 }
